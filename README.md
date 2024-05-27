@@ -15,3 +15,10 @@ The purpose of feedback in the assessment and learning process is to improve a s
 	- **View Feedback**: Allows users to view all feedback for a specific course.
 	- **Edit Feedback**: Permits users to modify their previously submitted feedback.
 	- **Delete Feedback**: Allows users to remove their feedback if necessary.
+
+## Categorization
+
+- database 4111850257
+- front-end 411850141 411855678 
+- back-end 411850257
+- installation manual 411850257
