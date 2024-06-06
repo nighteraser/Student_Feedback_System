@@ -2,6 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-header("Location: comment_page.php");
+header("Location: main_page.php");
 exit();
 ?>

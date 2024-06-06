@@ -2,16 +2,17 @@
 session_start();
 include('header.php');
 include('dbcon.php');
-$_SESSION['loggedin'] = true;
-$_SESSION['student_id'] = 5;
-$_SESSION['student_name'] = 'JOJO';
 
-// if (!isset($_POST['search']) || empty($_POST['professor_name'])) {
-//     header("location:../login_page.php?err_msg=".$_POST['professor_name']." does not exist");
-// }else{
-//     $professor_name = $_POST['professor_name'];
-// }
-    $professor_name = 'John Smith';
+    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === FALSE){
+        header("Location: main_page.php?search_err_msg=You need to log in!!!");
+        exit();
+    }
+
+    if (!isset($_POST['search']) || empty($_POST['professor_name'])) {
+        header("location: main_page.php?search_err_msg=".$_POST['professor_name']." does not exist");
+    }else{
+        $professor_name = $_POST['professor_name'];
+    }
 
 
     $sql = "SELECT id, department FROM Professor WHERE professorName = ?";
@@ -24,9 +25,9 @@ $_SESSION['student_name'] = 'JOJO';
         $professor_id = $row['id'];
         $department = $row['department'];
     }else{
-        echo "The name $professor_name does not exist in the teacher table.";
+        header("location: main_page.php?search_err_msg=".$_POST['professor_name']." does not exist");
+        exit();
     }
-    // sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 
     $sql = "SELECT AVG(rate) as avg_rate, AVG(difficulty) as avg_difficulty, COUNT(rate) as tot_courses
             FROM review 
@@ -144,7 +145,7 @@ $_SESSION['student_name'] = 'JOJO';
                                             if($tot_courses == 0)
                                                 echo "N/A";
                                             else
-                                                echo $tot_takeAgain/$tot_courses*100 . "%";
+                                                echo round($tot_takeAgain/$tot_courses*100) . "%";
                                             ?>
                                         </h3>
                                         <p class="card-text">Would be taken</p>
@@ -170,6 +171,11 @@ $_SESSION['student_name'] = 'JOJO';
                                 </svg>
                                 </button>
                             </form>
+                            <?php
+                            if(isset($_GET['error_msg'])){
+                                echo "<p style=\"color:Tomato;\"> ERROR: ".$_GET['error_msg']."</p>";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -274,9 +280,9 @@ $_SESSION['student_name'] = 'JOJO';
                         All courses
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li> -->
                     </ul>
                 </div>
                 <!-- Student Feedbacks  -->

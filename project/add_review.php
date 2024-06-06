@@ -13,10 +13,9 @@ $stmt->bind_param("iii", $_SESSION['student_id'], $_POST['professor_id'], $_POST
 $stmt->execute();
 
 if ($stmt->get_result()->fetch_assoc()['tot_review'] > 0){
-    echo "nOOOOOO";
+    header("Location: main_page.php?add_err_msg=You can not submited twice!");
     exit();
 }
-
 
 $sql = "INSERT INTO Review (studentid, professorid, courseid, comment, rate, difficulty, takeAgain, textbook, attendence, grade) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -27,7 +26,7 @@ $stmt->bind_param("iiisiiiiis", $_SESSION['student_id'], $_POST['professor_id'],
 
 $stmt->execute();
 
-echo "New records created successfully";
+header("Location: main_page.php?add_msg=New review created successfully");
 
 $conn = null;
 ?>
