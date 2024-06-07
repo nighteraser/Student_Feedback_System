@@ -1,5 +1,5 @@
 <?php
-    include("dbcon.php");
+    include("functions/dbcon.php");
     
     try {
         // set the PDO error mode to exception

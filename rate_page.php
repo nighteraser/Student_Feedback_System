@@ -1,64 +1,32 @@
 <?php
 session_start();
-include('header.php');
-include('dbcon.php');
+include('parts/header.php');
+include('functions/dbcon.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_POST['rate'])) {
     header("Location: comment_page.php");
     exit();
 }
-
 $professor_name = $_POST['professor_name'];
 $professor_id = $_POST['professor_id'];
 
-
 $sql = "SELECT courseName, id FROM Course WHERE professorid=$professor_id";
 $course_result = $conn->query($sql);
-
 
 ?>
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #242424;">
-        <div class="container-fluid">
-            <a class="navbar-brand mx-3" href="#">
-                <span class="material-symbols-outlined" style="color: white;">
-                    school
-                </span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse align-items-center justify-content-end" id="navbarNav">
-                <ul class="navbar-nav nav">
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">HOME</a></li>
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">ABOUT</a></li>
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">CONTACT</a></li>
-                    <li class="nav-item mx-3">
-                        <a class="btn btn-light fs-6" style="color: black;" href="#" role="button">
-                        <?php
-                            if (isset($_SESSION['student_name'])){
-                                echo $_SESSION['student_name'];
-                            }else{
-                                echo "Login";
-                            }
-                        ?>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include('parts/navbar.php') ?>
 
     <!-- Rate Page -->
     <section class="my-2">
         <div class="container">
             <h1 class="fw-light">Rate: <span class="fw-bold"><?php echo $professor_name?></span></h1>
         </div>
+        
         <!-- Questions -->
-        <form action="add_review.php" method="POST">
+        <form action="functions/add_review.php" method="POST">
         <input type="hidden" name="professor_id" value="<?=$professor_id?>"/>
         <div class="container needs-validation">
             <!-- Select course -->
@@ -256,4 +224,4 @@ $course_result = $conn->query($sql);
         </form>
     </section>
 
-<?php include('footer.php')?>
+<?php include('parts/footer.php')?>

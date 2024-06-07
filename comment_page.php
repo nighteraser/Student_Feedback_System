@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('header.php');
-include('dbcon.php');
+include('parts/header.php');
+include('functions/dbcon.php');
 
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === FALSE){
         header("Location: main_page.php?search_err_msg=You need to log in!!!");
@@ -13,7 +13,6 @@ include('dbcon.php');
     }else{
         $professor_name = $_POST['professor_name'];
     }
-
 
     $sql = "SELECT id, department FROM Professor WHERE professorName = ?";
     $stmt = $conn->prepare($sql);
@@ -80,48 +79,23 @@ include('dbcon.php');
         }
     }
 
-    $stmt->close();
+    $sql = "
+        SELECT r.rate, r.difficulty, Course.courseName, r.attendence, r.takeAgain, r.textbook, r.comment 
+        FROM Review r
+        JOIN Course ON r.courseid = Course.id
+        JOIN Professor p ON r.professorid = p.id 
+        WHERE p.professorName = ?";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $professor_name); 
+        $stmt->execute();
+        $result = $stmt->get_result();
+        // $result = $conn->query($sql);
 ?>
 
 <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #242424;">
-        <div class="container-fluid">
-            <a class="navbar-brand mx-3" href="#">
-                <span class="material-symbols-outlined" style="color: white;">
-                    school
-                </span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse align-items-center justify-content-end" id="navbarNav">
-                <ul class="navbar-nav nav">
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">HOME</a></li>
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">ABOUT</a></li>
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">CONTACT</a></li>
-                    <li class="nav-item mx-3">
-                    <div class="dropdown">
-                        <a class="btn btn-light fs-6" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?php
-                            
-                        if (isset($_SESSION['student_name'])){
-                            echo $_SESSION['student_name'] . "</a>";
-                            echo "<ul class=\"dropdown-menu\">";
-                            echo "<li><a class=\"dropdown-item\" href=\"logout.php\">Logout</a></li>";
-                            echo "</ul>";
-                        }else{
-                            echo "Login"."</a>";
-                        }
-                        ?>
-                        </a>
-                    </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include('parts/navbar.php') ?>
 
     <!-- Professor -->
     <section id="Professor" class="my-3">
@@ -287,19 +261,6 @@ include('dbcon.php');
                 </div>
                 <!-- Student Feedbacks  -->
                 <?php
-                    $sql = "
-                    SELECT r.rate, r.difficulty, Course.courseName, r.attendence, r.takeAgain, r.textbook, r.comment 
-                    FROM Review r
-                    JOIN Course ON r.courseid = Course.id
-                    JOIN Professor p ON r.professorid = p.id 
-                    WHERE p.professorName = ?";
-
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("s", $professor_name); 
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    // $result = $conn->query($sql);
-
                     if ($result->num_rows > 0) {
                         // Output data for each row
                         $difficulty_sum = 0;
@@ -343,10 +304,9 @@ include('dbcon.php');
                     }else {
                         echo "0 results";
                     }
-                    
                     $conn->close();
                 ?>
 
     </section>
 
-<?php include('footer.php')?>
+<?php include('parts/footer.php')?>

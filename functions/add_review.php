@@ -13,7 +13,7 @@ $stmt->bind_param("iii", $_SESSION['student_id'], $_POST['professor_id'], $_POST
 $stmt->execute();
 
 if ($stmt->get_result()->fetch_assoc()['tot_review'] > 0){
-    header("Location: main_page.php?add_err_msg=You can not submited twice!");
+    header("Location: ../main_page.php?add_err_msg=You can not submited twice!");
     exit();
 }
 
@@ -26,7 +26,7 @@ $stmt->bind_param("iiisiiiiis", $_SESSION['student_id'], $_POST['professor_id'],
 
 $stmt->execute();
 
-header("Location: main_page.php?add_msg=New review created successfully");
+header("Location: ../main_page.php?add_msg=New review created successfully");
 
 $conn = null;
 ?>

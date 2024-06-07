@@ -1,42 +1,26 @@
-<?php
-session_start();
-include('header.php');
-?>
+<?php session_start();?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student_Feedback_System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,500,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
+    <!-- style.css -->
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
 
 <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #242424;">
-        <div class="container-fluid">
-            <a class="navbar-brand mx-3" href="#">
-                <span class="material-symbols-outlined" style="color: white;">
-                    school
-                </span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse align-items-center justify-content-end" id="navbarNav">
-                <ul class="navbar-nav nav">
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">HOME</a></li>
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">ABOUT</a></li>
-                    <li class="nav-item"><a class="fs-6 nav-links" href="">CONTACT</a></li>
-                <?php
-                    if (isset($_SESSION['student_name'])){
-                        echo '<div class="dropdown">';
-                        echo '<a class="btn btn-light fs-6" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">';
-                        echo $_SESSION['student_name'] . '</a>';
-                        echo '<ul class="dropdown-menu">';
-                        echo '<li><a class="dropdown-item" href="logout.php">Logout</a></li>';
-                        echo '</ul>';
-                    }else{
-                        echo '<li class="nav-item"><a class="btn btn-light fs-6" href="login_page.php" role="button" data-bs-target="#Modal1" aria-expanded="false">Log In</a></li>';
-                        echo '<li class="nav-item mx-3"><a class="btn btn-light fs-6" href="register_page.php" role="button" data-bs-target="#Modal2" >Sign Up</a></li>';
-                    }
-                ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include('parts/navbar.php')?>
+    
     <section class="header">
         <div class="text-box">
             <h1>Student Feedback System</h1>
@@ -125,4 +109,4 @@ include('header.php');
         </div>
     </footer>
 
-<?php include('footer.php');?>
+<?php include('parts/footer.php');?>
