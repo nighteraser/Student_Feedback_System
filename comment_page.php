@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('parts/header.php');
 include('functions/dbcon.php');
 
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === FALSE){
@@ -29,8 +28,8 @@ include('functions/dbcon.php');
     }
 
     $sql = "SELECT AVG(rate) as avg_rate, AVG(difficulty) as avg_difficulty, COUNT(rate) as tot_courses
-            FROM review 
-            WHERE review.professorid = ?";
+            FROM Review 
+            WHERE Review.professorid = ?";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $professor_id); 
@@ -46,8 +45,8 @@ include('functions/dbcon.php');
     }
 
     $sql = "SELECT COUNT(takeAgain) as tot_takeAgain
-            FROM review 
-            WHERE review.professorid = ?
+            FROM Review 
+            WHERE Review.professorid = ?
             AND takeAgain = TRUE";
 
     $stmt = $conn->prepare($sql);
@@ -61,7 +60,7 @@ include('functions/dbcon.php');
 
     $sql = "SELECT rate, COUNT(*) AS count
             FROM Review
-            WHERE review.professorid = ?
+            WHERE Review.professorid = ?
             GROUP BY rate
             ORDER BY rate;";
 
@@ -92,6 +91,7 @@ include('functions/dbcon.php');
         $result = $stmt->get_result();
         // $result = $conn->query($sql);
 ?>
+<?php include('parts/header.php');?>
 
 <body>
     <!-- navbar -->
