@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Dhaka');
 
 $servername = "localhost";
 $username = "myapp";
-$password = 'NEpis3';
+$password = '1234';
 $database = 'mydb';
 
 $conn = new mysqli($servername, $username, $password, $database);

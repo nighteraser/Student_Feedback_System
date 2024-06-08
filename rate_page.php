@@ -26,7 +26,7 @@ $course_result = $conn->query($sql);
         </div>
         
         <!-- Questions -->
-        <form action="functions/add_review.php" method="POST">
+        <form action="functions/add_review.php" method="POST" class="was-validated">
         <input type="hidden" name="professor_id" value="<?=$professor_id?>"/>
         <div class="container needs-validation">
             <!-- Select course -->
@@ -35,8 +35,8 @@ $course_result = $conn->query($sql);
                     <h6 class="fw-bold mb-4">Select course name
                         <span style="color: tomato;">*</span>
                     </h6>
-                    <select class="form-select mx-auto" style="width: 450px;" aria-label="Default select example" name="course_id">
-                        <option selected>Select course name</option>
+                    <select class="form-select mx-auto" style="width: 450px;" aria-label="Default select example" name="course_id" required>
+                        <option value="">Select course name</option>
                         <?php
                         while($row = $course_result->fetch_assoc()){
                             echo "<option value=". $row['id'] .">" . $row['courseName'] . "</option>";
@@ -191,8 +191,8 @@ $course_result = $conn->query($sql);
                     <h6 class="fw-bold mb-4">Select grade received
                         <span style="color: tomato;">*</span>
                     </h6>
-                    <select class="form-select mx-auto" style="width: 450px;" aria-label="Default select example" name="grade">
-                        <option selected>Select course name</option>
+                    <select class="form-select mx-auto" style="width: 450px;" aria-label="Default select example" name="grade" required>
+                        <option value="">Select course name</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
@@ -209,7 +209,7 @@ $course_result = $conn->query($sql);
                     </h6>
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="comment"
-                            style="height: 100px"></textarea>
+                            style="height: 100px" required></textarea>
                         <label for="floatingTextarea2">Feedback</label>
                     </div>
                 </div>
