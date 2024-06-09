@@ -24,7 +24,7 @@ git clone https://github.com/nighteraser/Student_Feedback_System.git
 ```
 2. move to Student_Feedback_System
 ``` sh
-cd Student_Feedback_System folder
+cd Student_Feedback_System 
 ```
 3. give permission 
 ``` sh
