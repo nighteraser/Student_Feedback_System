@@ -7,6 +7,10 @@ sudo apt update
 echo "Installing Apache2..."
 sudo apt install -y apache2
 
+# Install PHP
+echo "Installing PHP..."
+sudo apt install -y php-mysql php 
+
 # Install MariaDB
 echo "Installing MariaDB..."
 sudo apt install -y mariadb-server
