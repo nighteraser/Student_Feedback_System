@@ -16,13 +16,13 @@ The purpose of feedback in the assessment and learning process is to improve a s
 	- **Edit Feedback**: Permits users to modify their previously submitted feedback.
 	- **Delete Feedback**: Allows users to remove their feedback if necessary.
 
-## How to run?
+## How to run? (Linux)
 
 1. download it
 ``` sh
 git clone https://github.com/nighteraser/Student_Feedback_System.git
 ```
-2. move to Student_Feedback_System folder
+2. move to Student_Feedback_System
 ``` sh
 cd Student_Feedback_System folder
 ```
