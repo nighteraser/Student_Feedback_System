@@ -3,6 +3,10 @@
 # Update the package list
 sudo apt update
 
+#Install Git
+echo "Installing Git..."
+sudo apt-get install -y git-all
+
 # Install Apache2
 echo "Installing Apache2..."
 sudo apt install -y apache2

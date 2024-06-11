@@ -38,7 +38,7 @@ cd Student_Feedback_System
 ``` sh
 sudo chmod +x *.sh
 ```
-4. Install Apache2, MariaDB server, and PHP
+4. Install Git, Apache2, MariaDB server, and PHP
 ``` sh
 ./setup_env.sh
 ```
