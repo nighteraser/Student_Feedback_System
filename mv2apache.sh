@@ -2,6 +2,7 @@
 
 des_path = '/var/www/html'
 
-sudo cp *.php $des_path
-sudo cp *.sh $des_path
-sudo cp -r . $des_path
+echo "move all files and folders to Apache workspace..."
+cp *.php $des_path
+cp *.sh $des_path
+cp -r . $des_path

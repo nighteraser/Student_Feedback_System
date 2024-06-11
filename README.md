@@ -40,7 +40,7 @@ sudo chmod +x *.sh
 ```
 4. Install Apache2, MariaDB server, and PHP
 ``` sh
-sudo ./setup_env.sh
+./setup_env.sh
 ```
 5. Load the database
 ``` sh
