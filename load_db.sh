@@ -11,16 +11,11 @@ if [ ! -f "$sql_file" ]; then
     exit 1
 fi
 
-# Prompt for the root password to perform MySQL operations
-read -sp "Enter the MariaDB root password: " root_pass
-echo
-
 # Create user
-mysql -u root -p$root_pass -e "
+mysql -u root -e "
+CREATE USER IF NOT EXISTS $dbuser IDENTIFIED BY '$dbpass';
 CREATE DATABASE IF NOT EXISTS $dbname;
-CREATE USER IF NOT EXISTS '$dbuser'@'localhost' IDENTIFIED BY '$dbpass';
-GRANT ALL PRIVILEGES ON $dbname.* TO '$dbuser;
-FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON $dbname.* TO $dbuser;
 "
 
 # Load data

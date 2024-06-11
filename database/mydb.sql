@@ -39,13 +39,6 @@ CREATE TABLE IF NOT EXISTS Review (
     UNIQUE(studentid, professorid, courseid)
 );
 
--- Add indexes to improve query performance
-CREATE INDEX IF NOT EXISTS idx_professor_department ON professor(department);
-CREATE INDEX IF NOT EXISTS idx_course_professorid ON course(professorid);
-CREATE INDEX IF NOT EXISTS idx_review_studentid ON review(studentid);
-CREATE INDEX IF NOT EXISTS idx_review_professorid ON review(professorid);
-CREATE INDEX IF NOT EXISTS idx_review_courseid ON review(courseid);
-
 -- Insert sample data into Professor
 INSERT INTO Professor (professorName, department) VALUES
 ('John Smith', 'Computer Science'),
