@@ -26,21 +26,21 @@ The purpose of feedback in the assessment and learning process is to improve a s
 
 ## How to run? (Linux)
 
-1. Install Git, Apache2, MariaDB server, and PHP
-``` sh
-./setup_env.sh
-```
-2. Download the code
+1. Download the code
 ``` sh
 git clone https://github.com/nighteraser/Student_Feedback_System.git
 ```
-3. Move to the Student_Feedback_System directory
+2. Move to the Student_Feedback_System directory
 ``` sh
 cd Student_Feedback_System 
 ```
-4. Give execution permission to shell scripts
+3. Give execution permission to shell scripts
 ``` sh
 sudo chmod +x *.sh
+```
+4. Install Apache2, MariaDB server, and PHP
+``` sh
+./setup_env.sh
 ```
 5. Load the database
 ``` sh
