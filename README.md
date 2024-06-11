@@ -50,8 +50,10 @@ sudo ./load_db.sh
 ``` sh
 sudo ./mv2apache.sh
 ```
-7. Open your browser and navigate to the application
-url = {YOUR_IP}/main_page.php
+7. Open your browser and navigate to the application  
+```no-highlight
+url = http://{your_device_ip}/main_page.php
+```
 
 ## Categorization
 
