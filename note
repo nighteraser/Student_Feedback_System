@@ -1,0 +1,16 @@
+# Create user
+
+sudo mysql -u root -e "
+CREATE USER IF NOT EXISTS myapp IDENTIFIED BY '1234';
+CREATE DATABASE IF NOT EXISTS mydb;
+GRANT ALL PRIVILEGES ON mydb.* TO myapp;
+"
+# Load data
+
+mysql -umyapp -p1234 mydb < database/mydb.sql
+
+# move all files and folders to Apache workspace
+
+sudo cp *.php /var/www/html/
+sudo cp *.sh /var/www/html/
+sudo cp -r . /var/www/html/

@@ -19,7 +19,7 @@ GRANT ALL PRIVILEGES ON $dbname.* TO $dbuser;
 "
 
 # Load data
-mysql -u$dbuser -p$dbpasswd $dbname < $sql_file
+mysql -u$dbuser -p1234 $dbname < $sql_file
 
 # Check exit status
 if [ $? -ne 0 ]; then
