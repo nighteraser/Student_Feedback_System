@@ -55,9 +55,21 @@ sudo ./mv2apache.sh
 url = http://{your_device_ip}/main_page.php
 ```
 
-## Categorization
+## How to run with Docker
+1. Clone the repository
 
-- database 4111850257
-- front-end 411850141 411855678 
-- back-end 411850257
-- installation manual 411850257
+```Bash
+git clone https://github.com/nighteraser/Student_Feedback_System.git
+cd Student_Feedback_System
+```
+
+2. Start the containers
+
+```Bash
+docker-compose up --build -d
+```
+
+3. Open your browser and navigate to:
+```
+http://localhost:8080/main_page.php
+```
