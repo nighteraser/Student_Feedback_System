@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Asia/Dhaka');
 
-$servername = "localhost";
+$servername = "db";
 $username = "myapp";
 $password = '1234';
 $database = 'mydb';
